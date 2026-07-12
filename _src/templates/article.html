@@ -17,33 +17,38 @@
         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site_url }}{{ page.url }}&title={{ page.title }}" target="_blank" title="Share on LinkedIn" class="share-btn linkedin">in</a>
     </div>
 
-    <div class="article-content">
-        <!-- Top Ad Placement Placeholder -->
-        <div class="ad-placeholder">AdSense (Top Article)</div>
+    <div class="article-layout-with-sidebar">
+        <div class="article-main-column">
+            <div class="article-content">
+                <!-- Top Ad Placement Placeholder -->
+                <div class="ad-placeholder">AdSense (Top Article)</div>
 
-        {{ page.content | safe }}
+                {{ page.content | safe }}
 
-        <!-- Bottom Ad Placement Placeholder -->
-        <div class="ad-placeholder">AdSense (Bottom Article)</div>
-    </div>
-
-    {% if page.is_article %}
-    <div class="author-bio">
-        <h3>About the Author</h3>
-        <p><strong>{{ page.author }}</strong> is an industry expert in commercial fleet management and vehicle protection plans. With years of experience advising small to large enterprises, they specialize in breaking down complex warranty contracts into actionable cost-saving strategies for business owners.</p>
-    </div>
-
-    <div class="related-articles">
-        <h3>Related Articles</h3>
-        <div class="grid">
-            {% for rel in related_articles %}
-            <div class="card">
-                <h4><a href="{{ rel.url }}">{{ rel.title }}</a></h4>
-                <p>{{ rel.description }}</p>
+                <!-- Bottom Ad Placement Placeholder -->
+                <div class="ad-placeholder">AdSense (Bottom Article)</div>
             </div>
-            {% endfor %}
         </div>
+
+        {% if page.is_article %}
+        <aside class="article-sidebar">
+            <div class="sidebar-widget author-bio">
+                <h3>About the Author</h3>
+                <p><strong>{{ page.author }}</strong> is an industry expert in commercial fleet management and vehicle protection plans. With years of experience advising small to large enterprises, they specialize in breaking down complex warranty contracts into actionable cost-saving strategies for business owners.</p>
+            </div>
+
+            <div class="sidebar-widget related-articles">
+                <h3>Similar Articles</h3>
+                <div class="sidebar-grid">
+                    {% for rel in related_articles %}
+                    <div class="sidebar-card">
+                        <h4><a href="{{ rel.url }}">{{ rel.title }}</a></h4>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+        {% endif %}
     </div>
-    {% endif %}
 </article>
 {% endblock %}
