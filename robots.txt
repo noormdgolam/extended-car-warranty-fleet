@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://extended-car-warranty-fleet.bongshai.com/sitemap.xml

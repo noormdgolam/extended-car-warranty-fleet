@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bongshai/public_html/extended-car-warranty-fleet
+    - /bin/cp -r * $DEPLOYPATH

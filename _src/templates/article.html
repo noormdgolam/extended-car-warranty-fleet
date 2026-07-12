@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="container article-layout">
+    <div class="article-header">
+        <h1>{{ page.title }}</h1>
+        <div class="meta">
+            <span class="author">By {{ page.author }}</span> | 
+            <span class="date">Updated on {{ page.last_updated }}</span>
+        </div>
+    </div>
+
+    <!-- Floating Share Buttons -->
+    <div class="share-buttons">
+        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site_url }}{{ page.url }}" target="_blank" title="Share on Twitter" class="share-btn twitter">𝕏</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ site_url }}{{ page.url }}" target="_blank" title="Share on Facebook" class="share-btn facebook">f</a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site_url }}{{ page.url }}&title={{ page.title }}" target="_blank" title="Share on LinkedIn" class="share-btn linkedin">in</a>
+    </div>
+
+    <div class="article-content">
+        <!-- Top Ad Placement Placeholder -->
+        <div class="ad-placeholder">AdSense (Top Article)</div>
+
+        {{ page.content | safe }}
+
+        <!-- Bottom Ad Placement Placeholder -->
+        <div class="ad-placeholder">AdSense (Bottom Article)</div>
+    </div>
+
+    {% if page.is_article %}
+    <div class="author-bio">
+        <h3>About the Author</h3>
+        <p><strong>{{ page.author }}</strong> is an industry expert in commercial fleet management and vehicle protection plans. With years of experience advising small to large enterprises, they specialize in breaking down complex warranty contracts into actionable cost-saving strategies for business owners.</p>
+    </div>
+
+    <div class="related-articles">
+        <h3>Related Articles</h3>
+        <div class="grid">
+            {% for rel in related_articles %}
+            <div class="card">
+                <h4><a href="{{ rel.url }}">{{ rel.title }}</a></h4>
+                <p>{{ rel.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</article>
+{% endblock %}
