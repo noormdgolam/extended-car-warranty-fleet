@@ -83,6 +83,30 @@ for i in range(110):
     slug = title.lower().replace(" ", "-").replace(",", "").replace(":", "").replace("(", "").replace(")", "").replace("?", "")
     pub_date = (start_date + timedelta(days=i*3)).strftime("%Y-%m-%d")
 
+    import random
+    
+    spin_intros = [
+        f"Protecting your commercial vehicles is essential for maintaining business operations. In this article, we dive deep into **{title}**.",
+        f"Fleet managers know that vehicle downtime directly impacts profitability. That's why understanding **{title}** is a critical component of risk management for any modern business.",
+        f"When a crucial vehicle breaks down, the costs extend far beyond the repair shop bill. Today, we're exploring **{title}** to help you keep your operations running smoothly and predictably."
+    ]
+    
+    spin_bodies = [
+        "### What is Typically Covered?\nMost comprehensive commercial warranties cover the critical components that keep your fleet moving. This includes the Engine and Transmission, Drive Axle assemblies, Electrical Components (which are increasingly complex in modern vehicles), and Heating/Cooling Systems. Ensuring these are protected under a commercial use policy is paramount.\n\n### What is Excluded?\nAlways read the fine print! Common exclusions in fleet warranties include routine maintenance like oil changes, brake pads, and tires. Additionally, any damage resulting from accidents, driver misuse, or unauthorized repairs will void the claim. \n\n## Cost vs Benefit\n\nIs an extended warranty worth the upfront premium? Let's break down the economics. On average, a major transmission repair on a commercial vehicle can cost upwards of $4,000 to $6,000. If an extended warranty costs $1,500 per vehicle per year, the peace of mind and financial predictability often outweigh the premium, especially when managing multiple assets.",
+        "### Core Coverage Details\nWhen negotiating a fleet warranty, you must prioritize the powertrain. The engine block, turbochargers, transmission, and drivetrain are the most expensive parts to replace. Secondary systems like suspension, steering, and AC are also vital for driver comfort and safety. \n\n### Common Pitfalls and Exclusions\nMany business owners fail to realize that standard consumer warranties explicitly exclude commercial use. If you use a vehicle for deliveries or trades, you need a specific commercial endorsement. Exclusions always apply to wear-and-tear items (wipers, belts, hoses) and any aftermarket modifications not approved by the manufacturer.\n\n## The Financial Calculation\n\nFleet maintenance is a numbers game. A single catastrophic engine failure can wipe out a month's profit for a small business. While setting aside a cash reserve for repairs is one strategy, an extended fleet warranty provides a fixed, predictable cost that can be easily budgeted and often written off as a business expense.",
+        "### Standard Commercial Inclusions\nA robust fleet warranty should offer bumper-to-bumper or stated-component coverage. This means protection for the engine, transmission, transfer case, and electrical systems. Advanced plans also cover emissions systems, which are notoriously expensive to fix on modern diesel trucks.\n\n### What You Pay For Out of Pocket\nRemember that an extended warranty is a service contract against defect and failure, not a maintenance plan. You will still be responsible for fluid changes, filters, brake rotors, and alignments. Failure to perform these routine tasks according to the manufacturer's schedule can actually void your warranty coverage.\n\n## Why Fleet Managers Choose Warranties\n\nPredictability is the lifeblood of logistics and service businesses. While premium costs add to the overhead, they prevent the massive capital shocks associated with major repairs. Furthermore, many commercial warranties include towing and substitute vehicle coverage, minimizing the operational disruption when a breakdown occurs."
+    ]
+    
+    spin_faqs = [
+        "**Q: Can I use any repair shop?**\nA: Many third-party warranty providers allow you to use any ASE-certified mechanic, but always verify their network requirements before signing the contract.\n\n**Q: Do fleet warranties cover roadside assistance?**\nA: Yes, the best commercial plans include 24/7 heavy-duty roadside assistance, towing to the nearest authorized facility, and sometimes even rental vehicle reimbursement.",
+        "**Q: Are these warranties transferable if I sell the vehicle?**\nA: In most cases, yes. Transferring a commercial warranty to the new owner can significantly increase the resale value of your fleet vehicle, though a small administrative fee may apply.\n\n**Q: How are claims processed?**\nA: Usually, the repair facility contacts the warranty administrator directly to get authorization before beginning work. You only pay your agreed-upon deductible.",
+        "**Q: What is a typical deductible for a commercial warranty?**\nA: Deductibles usually range from $100 to $500. Some providers offer a 'disappearing deductible' if you use their preferred nationwide repair network.\n\n**Q: Is there a waiting period before coverage starts?**\nA: Typically, yes. Most contracts have a 30-day and 1,000-mile waiting period to prevent pre-existing condition claims."
+    ]
+    
+    intro_text = random.choice(spin_intros)
+    body_text = random.choice(spin_bodies)
+    faq_text = random.choice(spin_faqs)
+
     content = f"""---
 title: "{title}"
 description: "Comprehensive guide to {title}. Learn how to protect your fleet, manage costs, and keep your business vehicles on the road."
@@ -92,41 +116,20 @@ date: "{pub_date}"
 slug: "{slug}"
 ---
 
-Protecting your commercial vehicles is essential for maintaining business operations. In this article, we dive deep into **{title}**.
+{intro_text}
 
 ## Key Takeaways
 - Fleet warranties reduce unpredictable repair costs.
 - Ensure your specific vehicle type is covered under commercial use terms.
-- Compare deductibles and coverage limits.
+- Compare deductibles, coverage limits, and repair networks.
 
 ## Understanding Coverage Options
 
-When managing a fleet, unexpected breakdowns can ruin your profit margins. An extended warranty acts as a financial safety net. 
-
-### What is Typically Covered?
-Most comprehensive commercial warranties cover:
-- Engine and Transmission
-- Drive Axle
-- Electrical Components
-- Heating and Cooling Systems
-
-### What is Excluded?
-Always read the fine print! Common exclusions include:
-- Routine maintenance (oil changes, brakes, tires)
-- Damage from accidents or misuse
-- Unauthorized repairs
-
-## Cost vs Benefit
-
-Is an extended warranty worth it? Let's break down the costs. On average, a major transmission repair on a commercial vehicle can cost upwards of $4,000. If an extended warranty costs $1,500 per vehicle per year, the peace of mind and financial predictability often outweigh the premium.
+{body_text}
 
 ## Frequently Asked Questions (FAQ)
 
-**Q: Can I use any repair shop?**
-A: Many third-party warranty providers allow you to use any ASE-certified mechanic, but always verify their network requirements.
-
-**Q: Do fleet warranties cover roadside assistance?**
-A: Yes, the best plans include 24/7 commercial roadside assistance, towing, and sometimes even rental vehicle reimbursement.
+{faq_text}
 """
     with open(os.path.join(content_dir, 'articles', f'{slug}.md'), 'w', encoding='utf-8') as f:
         f.write(content)
